@@ -9,8 +9,8 @@ const Page = (props: { title1: string, title2: string, title3: string }) => {
   return (
     <div>
       <Head>
-        <meta name="og:title" content="Vercel Edge Network" />
-        <meta name="og:description" content="Vercel Edge Network" />
+        <meta name="og:title" content="테스트으윽" />
+        <meta name="og:description" content="nene og generator" />
         <meta
           name="og:image"
           content={
@@ -23,8 +23,18 @@ const Page = (props: { title1: string, title2: string, title3: string }) => {
             }/api/param?title1=${props.title1}&title2=${props.title2}&title3=${props.title3}`
           }
         />
+        
+        <meta name="twitter:card" content="테스트으윽" />
+        <meta property="twitter:title" content="nene og generator" />
+        <meta name="twitter:image" content={
+            `${
+              process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : ''
+            }/api/param?title1=${props.title1}&title2=${props.title2}&title3=${props.title3}`
+          } />
+        <meta property="twitter:description" content="테스트중임" />
+
       </Head>
-      <h1>A page with Open Graph Image.</h1>
+      <h1>테스트임...</h1>
     </div>
   )
 }
