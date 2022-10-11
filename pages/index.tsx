@@ -1,6 +1,11 @@
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react';
 
-export default function Page() {
+const Page = (props: { title1: string, title2: string, title3: string }) => {
+
+  const router = useRouter();
+  console.log(props)
   return (
     <div>
       <Head>
@@ -15,7 +20,7 @@ export default function Page() {
             // https://vercel.com/docs/concepts/projects/environment-variables
             `${
               process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : ''
-            }/api/param`
+            }/api/param?title1=${props.title1}&title2=${props.title2}&title3=${props.title3}`
           }
         />
       </Head>
@@ -23,3 +28,9 @@ export default function Page() {
     </div>
   )
 }
+
+Page.getInitialProps = context => {
+  return context.query
+};
+
+export default Page;

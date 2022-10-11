@@ -5,69 +5,92 @@ export const config = {
   runtime: 'experimental-edge',
 }
 
-export default function handler(req: NextRequest) {
+const font = fetch(new URL('../../assets/NotoSansCJKtc-Bold.ttf', import.meta.url)).then(
+  (res) => res.arrayBuffer(),
+);
+
+export default async function handler(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url)
 
-    // ?title=<title>
-    const hasTitle = searchParams.has('title')
-    const title = hasTitle
-      ? searchParams.get('title')?.slice(0, 100)
-      : 'My default title'
+    const fontData = await font;
+
+    const title1 = searchParams.has('title1') ? searchParams.get('title1')?.slice(0, 100) : ''
+    const title2 = searchParams.has('title2') ? searchParams.get('title2')?.slice(0, 100) : ''
+    const title3 = searchParams.has('title3') ? searchParams.get('title3')?.slice(0, 100) : ''
 
     return new ImageResponse(
       (
         <div
           style={{
-            backgroundColor: 'black',
-            backgroundSize: '150px 150px',
+            display: 'flex',
             height: '100%',
             width: '100%',
-            display: 'flex',
-            textAlign: 'center',
             alignItems: 'center',
             justifyContent: 'center',
             flexDirection: 'column',
-            flexWrap: 'nowrap',
+            backgroundColor: 'white',
+            fontSize: 100,
+            letterSpacing: -2,
+            fontWeight: 700,
           }}
         >
           <div
             style={{
               display: 'flex',
-              alignItems: 'center',
-              alignContent: 'center',
-              justifyContent: 'center',
-              justifyItems: 'center',
+              padding: '5px 40px',
+              width: 'auto',
+              textAlign: 'center',
+              backgroundImage: 'linear-gradient(90deg, rgb(0, 124, 240), rgb(0, 223, 216))',
+              backgroundClip: 'text',
+              '-webkit-background-clip': 'text',
+              color: 'transparent',
+              fontFamily: 'Noto Sans CJK TC Bold',
             }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              alt="Vercel"
-              height={200}
-              src="data:image/svg+xml,%3Csvg width='116' height='100' fill='white' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M57.5 0L115 100H0L57.5 0z' /%3E%3C/svg%3E"
-              style={{ margin: '0 30px' }}
-              width={232}
-            />
+            {title1}
           </div>
           <div
             style={{
-              fontSize: 60,
-              fontStyle: 'normal',
-              letterSpacing: '-0.025em',
-              color: 'white',
-              marginTop: 30,
-              padding: '0 120px',
-              lineHeight: 1.4,
-              whiteSpace: 'pre-wrap',
+              padding: '5px 40px',
+              width: 'auto',
+              textAlign: 'center',
+              backgroundImage: 'linear-gradient(90deg, rgb(121, 40, 202), rgb(255, 0, 128))',
+              backgroundClip: 'text',
+              '-webkit-background-clip': 'text',
+              color: 'transparent',
+              fontFamily: 'Noto Sans CJK TC Bold',
             }}
           >
-            {title}
+            {title2}
+          </div>
+          <div
+            style={{
+              padding: '5px 40px',
+              width: 'auto',
+              textAlign: 'center',
+              backgroundImage: 'linear-gradient(90deg, rgb(255, 77, 77), rgb(249, 203, 40))',
+              backgroundClip: 'text',
+              '-webkit-background-clip': 'text',
+              color: 'transparent',
+              fontFamily: 'Noto Sans CJK TC Bold',
+            }}
+          >
+          {title3}
           </div>
         </div>
+
       ),
       {
         width: 1200,
         height: 630,
+        fonts: [
+          {
+            name: 'Noto Sans CJK TC Bold',
+            data: fontData,
+            style: 'normal',
+          }
+        ]
       }
     )
   } catch (e: any) {
