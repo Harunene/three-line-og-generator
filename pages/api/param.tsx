@@ -5,15 +5,9 @@ export const config = {
   runtime: 'experimental-edge',
 }
 
-const font = fetch(new URL('../../assets/NotoSansKR-Bold.otf', import.meta.url)).then(
-  (res) => res.arrayBuffer(),
-);
-
 export default async function handler(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url)
-
-    const fontData = await font;
 
     const title1 = searchParams.has('title1') ? searchParams.get('title1')?.slice(0, 100) : ''
     const title2 = searchParams.has('title2') ? searchParams.get('title2')?.slice(0, 100) : ''
@@ -81,13 +75,6 @@ export default async function handler(req: NextRequest) {
       {
         width: 1200,
         height: 630,
-        fonts: [
-          {
-            name: 'Noto Sans CJK TC Bold',
-            data: fontData,
-            style: 'normal',
-          }
-        ]
       }
     )
   } catch (e: any) {
