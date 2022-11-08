@@ -5,8 +5,8 @@ import { useEffect } from 'react'
 
 const Page = (props: { title1: string, title2: string, title3: string }) => {
 
-  const router = useRouter();
-  console.log(props)
+  const router = useRouter()
+  
   return (
     <div>
       <Head>
