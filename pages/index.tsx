@@ -1,6 +1,7 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react';
+import { useEffect } from 'react'
 
 const Page = (props: { title1: string, title2: string, title3: string }) => {
 
@@ -34,7 +35,10 @@ const Page = (props: { title1: string, title2: string, title3: string }) => {
       </Head>
       <h1>세줄 미리보기 생성기</h1>
       <h3>별건없고 세줄 미리보기를 이쁘게 만들어줍니다.</h3>
-      <h3>twitter: @harunene</h3>
+      <h3>
+        twitter:&nbsp;
+        <Link href="http://twitter.com/harunene">@harunene</Link>
+      </h3>
     </div>
   )
 }
