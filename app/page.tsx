@@ -33,7 +33,8 @@ export default function Home() {
   const [title2, setTitle2] = useState(checkParamEmpty(searchParams.get("title2")) ?? "미리보기 🤔")
   const [title3, setTitle3] = useState(checkParamEmpty(searchParams.get("title3")) ?? "✨생성기✨ 🤗")
 
-  const host = process.env.VERCEL_URL ? 'https://' + process.env.VERCEL_URL : "http://localhost:3000"
+  const VERCEL_URL = process.env.VERCEL_URL ?? process.env.NEXT_PUBLIC_VERCEL_URL
+  const host = "https://${VERCEL_URL}"
 
   const params = new URLSearchParams({
     title1: title1,
