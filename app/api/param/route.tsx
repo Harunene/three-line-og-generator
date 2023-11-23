@@ -3,9 +3,7 @@ import { NextRequest } from 'next/server'
 
 import Preview from '@/components/Preview'
 
-export const config = {
-  runtime: 'experimental-edge',
-}
+export const runtime = "edge"
 
 export async function GET(req: NextRequest) {
   try {
