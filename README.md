@@ -1,4 +1,6 @@
-Three line OG Generator
+![param](https://github.com/Harunene/three-line-og-generator/assets/1228030/712c25a0-2b86-493c-b8df-429690f72d6c)
+
+# Three line OG Generator
 
 ## Getting Started
 
