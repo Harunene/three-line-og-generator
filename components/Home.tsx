@@ -25,7 +25,7 @@ export default function Home() {
   const { toast } = useToast();
 
   const searchParams = useSearchParams();
-  const checkParamEmpty = (title: any) => !!title ? title : null;
+  const checkParamEmpty = (title: any) => title ?? "";
   const titleArr = ["title1", "title2", "title3"].map(searchParams.get).map(checkParamEmpty)
   const [title1, setTitle1] = useState(checkParamEmpty(titleArr[0]));
   const [title2, setTitle2] = useState(checkParamEmpty(titleArr[1]));
