@@ -26,9 +26,10 @@ export default function Home() {
 
   const searchParams = useSearchParams();
   const checkParamEmpty = (title: any) => !!title ? title : null;
-  const [title1, setTitle1] = useState(checkParamEmpty(searchParams.get("title1")) ?? "세 줄.......?!");
-  const [title2, setTitle2] = useState(checkParamEmpty(searchParams.get("title2")) ?? "미리보기 🤔");
-  const [title3, setTitle3] = useState(checkParamEmpty(searchParams.get("title3")) ?? "✨생성기✨ 🤗");
+  const titleArr = ["title1", "title2", "title3"].map(searchParams.get).map(checkParamEmpty)
+  const [title1, setTitle1] = useState(checkParamEmpty(titleArr[0]));
+  const [title2, setTitle2] = useState(checkParamEmpty(titleArr[1]));
+  const [title3, setTitle3] = useState(checkParamEmpty(titleArr[2]));
 
   const VERCEL_URL = process.env.VERCEL_URL ?? process.env.NEXT_PUBLIC_VERCEL_URL;
   const host = `https://${VERCEL_URL}`;
@@ -68,15 +69,15 @@ export default function Home() {
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="title1">첫째 줄</Label>
-                <Input id="title1" type="text" placeholder="세 줄" value={title1} enterKeyHint="next" onChange={(e) => setTitle1(e.target.value)} />
+                <Input id="title1" type="text" placeholder="세 줄.......?!" value={title1} enterKeyHint="next" onChange={(e) => setTitle1(e.target.value)} />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="title2">둘째 줄</Label>
-                <Input id="title2" type="text" placeholder="미리보기" value={title2} enterKeyHint="next" onChange={(e) => setTitle2(e.target.value)} />
+                <Input id="title2" type="text" placeholder="미리보기 🤔" value={title2} enterKeyHint="next" onChange={(e) => setTitle2(e.target.value)} />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="title3">셋째 줄</Label>
-                <Input id="title3" type="text" placeholder="생성기" value={title3} enterKeyHint="done" onChange={(e) => setTitle3(e.target.value)} />
+                <Input id="title3" type="text" placeholder="✨생성기✨ 🤗" value={title3} enterKeyHint="done" onChange={(e) => setTitle3(e.target.value)} />
               </div>
             </CardContent>
             <CardFooter>
