@@ -11,9 +11,9 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const checkParamEmpty = (title: any) => !!title ? title : null
-  const title1 = checkParamEmpty(searchParams.title1) ?? "세 줄.......?!"
-  const title2 = checkParamEmpty(searchParams.title2) ?? "미리보기 🤔"
-  const title3 = checkParamEmpty(searchParams.title3) ?? "✨생성기✨ 🤗"
+  const title1 = checkParamEmpty(searchParams.title1) ?? ""
+  const title2 = checkParamEmpty(searchParams.title2) ?? ""
+  const title3 = checkParamEmpty(searchParams.title3) ?? ""
   const ogImageParams = new URLSearchParams({
     title1: title1,
     title2: title2,
